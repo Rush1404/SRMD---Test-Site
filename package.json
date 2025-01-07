@@ -10,7 +10,8 @@
     "open-app": "gulp open-app",
     "start": "npm run open-app",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "gulp-watch"
+    "watch": "gulp-watch",
+    "gulp": "gulp"
   },
   "repository": {
     "type": "git",
