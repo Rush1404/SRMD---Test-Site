@@ -1,3 +1,4 @@
 {
-    "editor.overtypeCursorStyle": "line"
+    "editor.overtypeCursorStyle": "line",
+    "liveServer.settings.port": 5501
 }
