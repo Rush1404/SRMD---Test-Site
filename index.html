@@ -199,10 +199,117 @@
   <!-- Text Section -->
   <div class="container px-3">
     <div class="p-3 text-left">
-      <h1 class="mt-1 fs-2 fs-md-1" style="font-weight: 800;">Pujya Gurudevshri in Chennaid</h1>
+      <h1 class="mt-1 fs-2 fs-md-1" style="font-weight: 800;">Pujya Gurudevshri in Chennai</h1>
     </div>
   </div>
 </section>
+
+<section class="pt-0 pb-4">
+  <div class="container px-3 content-container">
+    <div class="row gy-4">
+      <div class="col-12 col-lg-10 rounded-3 shadow-lg" style="background-color: #d8c4b1; border: 3px solid black; font-family: 'Inter', sans-serif;">
+        <div id="countdown-timer" 
+             class="d-flex justify-content-center align-items-center p-3 rounded-3" 
+             style="background-color: #d8c4b1;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const countdownEl = document.getElementById('countdown-timer');
+
+  // Set the end date: Monday, February 3, 2025
+  const endTime = new Date('2025-02-03T00:00:00Z').getTime();
+
+  // Update countdown function
+  function updateCountdown() {
+    const now = Date.now();
+    const timeRemaining = Math.max(0, Math.floor((endTime - now) / 1000));
+
+    // Stop if the countdown reaches zero
+    if (timeRemaining <= 0) {
+      countdownEl.innerHTML = `
+        <div class="countdown-item">
+          <div class="number">00</div><div class="label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div class="number">00</div><div class="label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div class="number">00</div><div class="label">Minutes</div>
+        </div>
+        <div class="countdown-item">
+          <div class="number">00</div><div class="label">Seconds</div>
+        </div>`;
+      return;
+    }
+
+    // Calculate days, hours, minutes, and seconds
+    const days = Math.floor(timeRemaining / (24 * 60 * 60));
+    const hours = Math.floor((timeRemaining % (24 * 60 * 60)) / 3600);
+    const minutes = Math.floor((timeRemaining % 3600) / 60);
+    const seconds = timeRemaining % 60;
+
+    // Render the countdown with labels
+    countdownEl.innerHTML = `
+      <div class="countdown-item">
+        <div class="number">${days.toString().padStart(2, '0')}</div><div class="label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="number">${hours.toString().padStart(2, '0')}</div><div class="label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="number">${minutes.toString().padStart(2, '0')}</div><div class="label">Minutes</div>
+      </div>
+      <div class="countdown-item">
+        <div class="number">${seconds.toString().padStart(2, '0')}</div><div class="label">Seconds</div>
+      </div>`;
+  }
+
+  // Initial call to set countdown
+  updateCountdown();
+
+  // Update every second
+  const timer = setInterval(() => {
+    updateCountdown();
+
+    // Stop timer if time expires
+    if (Date.now() >= endTime) {
+      clearInterval(timer);
+    }
+  }, 1000);
+});
+</script>
+
+<!-- Styling -->
+<style>
+  #countdown-timer {
+    font-family: Inter;
+    text-align: center;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .countdown-item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+  }
+  .number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+  }
+  .label {
+    font-size: 6px;
+    color: #555;
+  }
+</style>
+
 
 <!-- START Section Content W/ 2 images aside of icon title description -->
 <section class="pt-0 pb-4">
@@ -211,7 +318,6 @@
       <!-- Image Section -->
       <div class="col-12 col-lg-5">
         <div class="position-relative">
-          <div id="countdown-timer" class="position-absolute top-4 end-4 p-3 rounded-3 text-white bg-black bg-opacity-50 backdrop-blur"></div>
           <img src="assets/img/updated_chirtrapat.jpeg" class="w-100 rounded-3 shadow-lg" alt="gurudev praying" style="height: auto; max-height: 530px; object-fit: cover;">
         </div>
       </div>
@@ -244,80 +350,7 @@
 </style>
 
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const countdownEl = document.getElementById('countdown-timer');
 
-  // Retrieve or set initial countdown time
-  const savedEndTime = localStorage.getItem('countdownEndTime');
-  const currentTime = Date.now();
-  let endTime;
-
-  if (savedEndTime) {
-    endTime = parseInt(savedEndTime, 10);
-    // If saved time has expired, reset to 24 hours from now
-    if (currentTime >= endTime) {
-      endTime = currentTime + 24 * 60 * 60 * 1000;
-      localStorage.setItem('countdownEndTime', endTime.toString());
-    }
-  } else {
-    // First time setup: set end time to 24 hours from now
-    endTime = currentTime + 24 * 60 * 60 * 1000;
-    localStorage.setItem('countdownEndTime', endTime.toString());
-  }
-
-  // Update countdown function
-  function updateCountdown() {
-    const now = Date.now();
-    const timeRemaining = Math.max(0, Math.floor((endTime - now) / 1000));
-
-    if (timeRemaining <= 0) {
-      countdownEl.textContent = '00:00:00';
-      return;
-    }
-
-    // Calculate hours, minutes, seconds
-    const hours = Math.floor(timeRemaining / 3600);
-    const minutes = Math.floor((timeRemaining % 3600) / 60);
-    const seconds = timeRemaining % 60;
-
-    // Format time with leading zeros
-    countdownEl.textContent = [hours, minutes, seconds]
-      .map(v => v.toString().padStart(2, '0'))
-      .join(':');
-  }
-
-  // Initial call to set countdown
-  updateCountdown();
-
-  // Update every second
-  const timer = setInterval(() => {
-    updateCountdown();
-    
-    // Stop timer if time expires
-    if (Date.now() >= endTime) {
-      clearInterval(timer);
-    }
-  }, 1000);
-});
-</script>
-
-<!-- END Section Content -->
-<style>
-    .horizontal_line {
-        width: 90%;
-        height: 5px;
-        border-top: 5px dotted black;
-        line-height: 80%;
-    }
-
-    .line {
-        border-bottom: 1px solid black;
-        margin-top: 5px;
-        margin-bottom: 10px;
-        width: 100%;
-    }
-</style>
 
 <section class="py-5">
   <!-- Text Section -->
@@ -590,7 +623,28 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 </script>
 
-
+<style>
+  #countdown-timer {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  #countdown-timer > div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  #countdown-timer > div > div {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  #countdown-timer > div > small {
+    font-size: 10px;
+  }
+</style>
 
 
 
