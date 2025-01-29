@@ -195,7 +195,7 @@
 
 
 
-<section class="pt-6 pb-0" id="count-stats">
+<section class="pt-7 pb-0" id="count-stats">
   <!-- Text Section -->
   <div class="container px-3">
     <div class="p-3 text-left">
@@ -203,86 +203,6 @@
     </div>
   </div>
 </section>
-
-<section class="pt-0 pb-4">
-  <div class="container px-3 content-container">
-    <div class="row gy-4">
-      <div class="col-12 col-lg-10 rounded-3 shadow-lg" style="background-color: #d8c4b1; border: 3px solid black; font-family: 'Inter', sans-serif;">
-        <div id="countdown-timer" 
-             class="d-flex justify-content-center align-items-center p-3 rounded-3" 
-             style="background-color: #d8c4b1;">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const countdownEl = document.getElementById('countdown-timer');
-
-  // Set the end date: Monday, February 3, 2025
-  const endTime = new Date('2025-02-03T00:00:00Z').getTime();
-
-  // Update countdown function
-  function updateCountdown() {
-    const now = Date.now();
-    const timeRemaining = Math.max(0, Math.floor((endTime - now) / 1000));
-
-    // Stop if the countdown reaches zero
-    if (timeRemaining <= 0) {
-      countdownEl.innerHTML = `
-        <div class="countdown-item">
-          <div class="number">00</div><div class="label">Days</div>
-        </div>
-        <div class="countdown-item">
-          <div class="number">00</div><div class="label">Hours</div>
-        </div>
-        <div class="countdown-item">
-          <div class="number">00</div><div class="label">Minutes</div>
-        </div>
-        <div class="countdown-item">
-          <div class="number">00</div><div class="label">Seconds</div>
-        </div>`;
-      return;
-    }
-
-    // Calculate days, hours, minutes, and seconds
-    const days = Math.floor(timeRemaining / (24 * 60 * 60));
-    const hours = Math.floor((timeRemaining % (24 * 60 * 60)) / 3600);
-    const minutes = Math.floor((timeRemaining % 3600) / 60);
-    const seconds = timeRemaining % 60;
-
-    // Render the countdown with labels
-    countdownEl.innerHTML = `
-      <div class="countdown-item">
-        <div class="number">${days.toString().padStart(2, '0')}</div><div class="label">Days</div>
-      </div>
-      <div class="countdown-item">
-        <div class="number">${hours.toString().padStart(2, '0')}</div><div class="label">Hours</div>
-      </div>
-      <div class="countdown-item">
-        <div class="number">${minutes.toString().padStart(2, '0')}</div><div class="label">Minutes</div>
-      </div>
-      <div class="countdown-item">
-        <div class="number">${seconds.toString().padStart(2, '0')}</div><div class="label">Seconds</div>
-      </div>`;
-  }
-
-  // Initial call to set countdown
-  updateCountdown();
-
-  // Update every second
-  const timer = setInterval(() => {
-    updateCountdown();
-
-    // Stop timer if time expires
-    if (Date.now() >= endTime) {
-      clearInterval(timer);
-    }
-  }, 1000);
-});
-</script>
 
 <!-- Styling -->
 <style>
@@ -387,6 +307,9 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="pt-3">
               <p class="text-gradient text-dark mb-4" style="font-weight: 650;"><i style="font-size:18px" class="fa">&#xf073;</i> Sun, 2 Feb  &nbsp&nbsp&nbsp&nbsp<i style="font-size:24px" class="fa">&#xf017;</i> 10:00am - 12:00pm</p>
               <p class="text-gradient text-dark mb-4" style="font-weight: 650;"> Sadharmik Vatsalya (Lunch)</p>
+            </div>
+            <div class="pt-0">
+              <p class="text-gradient text-dark mb-1" style="font-weight: 650;"> *Contact us if you need help</p>
             </div>
           </div>
         </div>
